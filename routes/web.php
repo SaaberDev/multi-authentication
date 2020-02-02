@@ -12,7 +12,7 @@
 */
     Route::get('/home', 'frontend\PagesController@index')->name('index');
     Route::group(['prefix' => '/', 'middleware' => 'role:isSuperAdmin'], function (){
-        Route::get('/dashboard', 'backend\DashboardController@index')->name('dashboard');
+        Route::get('/dashboard', 'frontend\HomeController@index')->name('dashboard');
     });
 
     Auth::routes();
