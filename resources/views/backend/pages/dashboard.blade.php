@@ -38,7 +38,7 @@
                                 @if($i = 1)
                                     @foreach($users as $value)
                                         <tr>
-                                            <th scope="row">{{ $i }}</th>
+                                            <th scope="row">{{ $i }}</th> @php $i++; @endphp
                                             <td>{{ $value->name }}</td>
                                             <td>{{ $value->email }}</td>
                                             @foreach($value->roles as $role)
@@ -58,7 +58,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {{-- Button for Deleting User --}}
+                                                {{-- Modal for Deleting User --}}
                                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal" data-whatever="deleteUser"><i class="fas fa-user-times"></i></button>
                                                 {{-- Delete Button Modal Start --}}
                                                 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -79,7 +79,7 @@
                                                 </div>
                                                 {{-- Delete Button Modal End --}}
 
-                                                {{-- Button for Editing User --}}
+                                                {{-- Modal for Editing User --}}
                                                 <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#editModal" data-whatever="editUser"><i class="fas fa-user-edit"></i></button>
                                                 {{-- Edit Button Modal Start --}}
                                                 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -112,7 +112,7 @@
                                                 </div>
                                                 {{-- Edit Button Modal End --}}
 
-                                                {{-- Button for Viewing User --}}
+                                                {{-- Modal for Viewing User --}}
                                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#viewModal" data-whatever="viewUser"><i class="fas fa-eye"></i></button>
                                                 {{-- View Button Modal Start --}}
                                                 <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
@@ -120,25 +120,12 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="viewModalLabel">New message</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form>
-                                                                    <div class="form-group">
-                                                                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                                                        <input type="text" class="form-control" id="recipient-name">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="message-text" class="col-form-label">Message:</label>
-                                                                        <textarea class="form-control" id="message-text"></textarea>
-                                                                    </div>
-                                                                </form>
+                                                                <label for="name">Name:</label>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Send message</button>
                                                             </div>
                                                         </div>
                                                     </div>

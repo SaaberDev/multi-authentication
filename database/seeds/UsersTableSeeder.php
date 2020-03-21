@@ -25,8 +25,9 @@
             if(!$users->count()){
                 $SuperAdmin = new User();
                 $SuperAdmin->name = 'Saber';
+                $SuperAdmin->username = 'SaaberDev';
                 $SuperAdmin->email = 'saber@demo.com';
-                $SuperAdmin->isActive = 1;
+                $SuperAdmin->status = 1;
                 $SuperAdmin->email_verified_at = now();
                 $SuperAdmin->password = bcrypt('123456');
                 $SuperAdmin->remember_token = Str::random(10);
@@ -35,8 +36,9 @@
 
                 $Admin = new User();
                 $Admin->name = 'Faisal';
+                $Admin->username = 'faisal';
                 $Admin->email = 'faisal@demo.com';
-                $Admin->isActive = 1;
+                $Admin->status = 1;
                 $Admin->email_verified_at = now();
                 $Admin->password = bcrypt('123456');
                 $Admin->remember_token = Str::random(10);
@@ -45,8 +47,9 @@
 
                 $User = new User();
                 $User->name = 'Isfar';
+                $User->username = 'isfar';
                 $User->email = 'isfar@demo.com';
-                $User->isActive = 1;
+                $User->status = 1;
                 $User->email_verified_at = now();
                 $User->password = bcrypt('123456');
                 $User->remember_token = Str::random(10);

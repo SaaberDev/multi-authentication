@@ -10,7 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-    Route::get('/home', 'frontend\PagesController@index')->name('index');
+
+    use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Route;
+
+    Route::get('/', 'frontend\PagesController@index')->name('index');
     Route::group(['prefix' => '/', 'middleware' => 'role:isSuperAdmin'], function (){
         Route::get('/dashboard', 'backend\DashboardController@index')->name('dashboard');
     });

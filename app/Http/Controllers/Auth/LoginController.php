@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -27,9 +28,11 @@ class LoginController extends Controller
     /**
      * Where to redirect users after login.
      *
-     * @var string
+     * @param $request
+     * @param User $user
+     * @return RedirectResponse|void
      */
-    protected $redirectTo = '/dashboard';
+//    protected $redirectTo = '/dashboard';
 
     public function authenticated($request, User $user)
     {
@@ -45,17 +48,37 @@ class LoginController extends Controller
         else{
             return abort(401);
         }
-        /*if($user->hasRole('isSuperAdmin')){
-            return redirect()->route('dashboard');
-        }else{
-            return redirect()->route('index');
-        }*/
+    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return [
+            'username' => $request->username,
+            'password' => $request->password,
+            'status' => 1
+        ];
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
     }
 
     /**
      * Create a new controller instance.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
     /*public function __construct()
     {
@@ -64,6 +87,6 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/home');
+        return redirect('/');
     }
 }

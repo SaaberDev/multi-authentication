@@ -18,7 +18,7 @@
         {
             $user = Auth::user();
             if($user->hasRole('isSuperAdmin')){
-                $users = User::orderBy('isActive', 'asc')->where('id', '!=', Auth::id())->get();
+                $users = User::orderBy('status', 'asc')->where('id', '!=', Auth::id())->get();
 
             }
             elseif($user->hasRole('isAdmin')){
