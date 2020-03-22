@@ -6,13 +6,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-                @error('status')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-
                 <div class="card-body">
+                    <div class="col-md-12">
+                        @include('alert')
+                        @yield('success_alert_registration')
+                    </div>
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

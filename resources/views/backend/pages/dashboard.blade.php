@@ -51,7 +51,7 @@
                                                 </td>
                                             @endforeach
                                             <td>
-                                                @if($value->isActive == 1)
+                                                @if($value->status == 1)
                                                     <label for="status" class="text-success">Active</label>
                                                 @else
                                                     <label for="status" class="text-danger">Inactive</label>

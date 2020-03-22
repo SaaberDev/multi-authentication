@@ -43,7 +43,16 @@ class LoginController extends Controller
             return redirect()->route('dashboard');
         }
         elseif ($user->hasRole('isUser')){
-            return redirect()->route('index');
+            if($user->status == 1){
+                return redirect()->route('index');
+            }
+            else{
+                $this->logout();
+                return redirect()->route('login')
+                    ->with('status', 'Your account is waiting for our administrator approval.')
+                    ->with('greet', 'Please check back later. Thank You.');
+            }
+
         }
         else{
             return abort(401);
@@ -61,7 +70,7 @@ class LoginController extends Controller
         return [
             'username' => $request->username,
             'password' => $request->password,
-            'status' => 1
+//            'status' => 1
         ];
     }
 

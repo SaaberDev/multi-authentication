@@ -31,6 +31,7 @@
                 $SuperAdmin->email_verified_at = now();
                 $SuperAdmin->password = bcrypt('123456');
                 $SuperAdmin->remember_token = Str::random(10);
+                $SuperAdmin->approved_at = now();
                 $SuperAdmin->save();
                 $SuperAdmin->roles()->attach($isSuperAdmin);
 
@@ -42,6 +43,7 @@
                 $Admin->email_verified_at = now();
                 $Admin->password = bcrypt('123456');
                 $Admin->remember_token = Str::random(10);
+                $Admin->approved_at = now();
                 $Admin->save();
                 $Admin->roles()->attach($isAdmin);
 
@@ -51,6 +53,16 @@
                 $User->email = 'isfar@demo.com';
                 $User->status = 1;
                 $User->email_verified_at = now();
+                $User->password = bcrypt('123456');
+                $User->remember_token = Str::random(10);
+                $User->approved_at = now();
+                $User->save();
+                $User->roles()->attach($isUser);
+
+                $User = new User();
+                $User->name = 'NullUser';
+                $User->username = 'user';
+                $User->email = 'user@demo.com';
                 $User->password = bcrypt('123456');
                 $User->remember_token = Str::random(10);
                 $User->save();

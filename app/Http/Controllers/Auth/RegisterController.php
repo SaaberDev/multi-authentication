@@ -36,6 +36,17 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/login' /*RouteServiceProvider::HOME*/;
 
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     /**
      * Handle a registration request for the application.
      *
@@ -58,16 +69,6 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
-    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -87,7 +88,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return \Illuminate\Http\RedirectResponse
      */
     protected function create(array $data)
     {
@@ -100,6 +101,9 @@ class RegisterController extends Controller
         ]);
         $isUser = Role::where('name', 'isUser')->first();
         $user->roles()->attach($isUser);
-        return $user;
+        return redirect()->route('login', compact('user'))
+            ->with('registered', 'Bravo! You are now a member of Noobs.')
+            ->with('login_again', 'Please wait for administrator approval.')
+            ->with('approval_duration', 'Your Account will be approved within 24 hours.');
     }
 }
